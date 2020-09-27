@@ -33,6 +33,6 @@ media
 /migrations/
 /__pycache__/
 */__pycache__/*
-**/migrations/*
+# **/migrations/*
 **/__pycache__/*
-news_collector/env.py
+**/news_collector/env.py/*
