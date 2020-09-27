@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Signin</title>
+  <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+  <link rel="apple-touch-icon" href="../assets/images/logo.png">
+  <meta name="apple-mobile-web-app-title" content="Flatkit">
+  <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" sizes="196x196" href="static/assets/images/logo.png">
+  
+  <!-- style -->
+  <link rel="stylesheet" href="{% static 'assets/animate.css/animate.min.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'assets/glyphicons/glyphicons.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'assets/material-design-icons/material-design-icons.css' %}" type="text/css" />
+
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/dist/css/bootstrap.min.css' %}" type="text/css" />
+  <!-- build:css static/assets/styles/app.min.css -->
+  <link rel="stylesheet" href="{% static 'assets/styles/app.css' %}" type="text/css" />
+  <!-- endbuild -->
+  <link rel="stylesheet" href="{% static 'assets/styles/font.css' %}" type="text/css" />
+</head>
+<body>
+  <div class="app" id="app">
+<!-- ############ LAYOUT START-->
+  <div class="center-block w-xxl w-auto-xs p-y-md">
+	<div class="navbar">
+	  <div class="pull-center">
+		<!-- <div ui-include="'static/views/blocks/navbar.brand.html'"></div> -->
+	  </div>
+	</div>
+	<div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+	  <div class="m-b text-sm">
+		Sign in with your Expatangle Account
+	  </div>
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+    			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        		<span aria-hidden="true">&times;</span>
+   	 			</button>
+  		  	{{ message }}
+			</div>
+		{% endfor %}
+	{% endif %}
+	  <form id="login_form" method="post" name="form" action="{% url 'signin' %}">
+		{% csrf_token %}
+		<div class="md-form-group float-label">
+		  <input name="user" id="username" type="text" class="md-input"  required>
+		  <label>Username</label>
+		</div>
+		<div class="md-form-group float-label">
+		  <input name="password" type="password" id="password" class="md-input" required>
+		  <label>Password</label>
+		</div>      
+		<div class="m-b-md">        
+		  <label class="md-check">
+			<input type="checkbox"><i class="primary"></i> Keep me signed in
+		  </label>
+		</div>
+		<input type="submit" id="submit" class="btn primary btn-block p-x-md"></input>
+	  </form>
+	  
+		<br>
+    	</div>
+	<div class="p-v-lg text-center">
+ 	  <div>Do not have an account? <a ui-sref="access.signup" href="{% url 'signup' %}" class="text-primary _600">Sign up</a></div>
+	</div>
+  </div>
+  </div>
+
+   <script src="{% static 'libs/jquery/jquery/dist/jquery.js' %}"></script>
+<!-- Bootstrap -->
+  <script src="{% static 'libs/jquery/tether/dist/js/tether.min.js' %} "></script>
+  <script src="{% static 'libs/jquery/bootstrap/dist/js/bootstrap.js' %}"></script>
+
+  <script src="{% static 'libs/jquery/PACE/pace.min.js' %}"></script>
+
+  <script src="{% static 'scripts/config.lazyload.js' %}"></script>
+
+  <script src="{% static 'scripts/palette.js' %}"></script>
+  <script src="{% static 'scripts/ui-load.js' %}"></script>
+  <script src="{% static 'scripts/ui-jp.js' %}"></script>
+  <script src="{% static 'scripts/ui-include.js' %}"></script>
+  <script src="{% static 'scripts/ui-device.js' %}"></script>
+  <script src="{% static 'scripts/ui-form.js' %}"></script>
+  <script src="{% static 'scripts/ui-nav.js' %}"></script>
+  <script src="{% static 'scripts/ui-screenfull.js' %}"></script>
+  <script src="{% static 'scripts/ui-scroll-to.js' %}"></script>
+  <script src="{% static 'scripts/ui-toggle-class.js' %}"></script>
+
+  <!-- <script src="static/scripts/app.js"></script> -->
+
+  <!-- ajax -->
+
+</body>
+</html>

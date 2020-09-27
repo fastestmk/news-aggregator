@@ -20,5 +20,9 @@ from .views import *
 
 urlpatterns = [
     path('scrape', ScrapeNews.as_view(), name='scrape'),
-    path('', NewsList.as_view(), name='home')
+    path('', NewsList.as_view(), name='home'),
+	path('signup', SignUpView.as_view(), name='signup'),
+    path('signin', LoginView.as_view(), name='signin'),
+    path('logout', LogoutView, name='logout')
+
 ]
