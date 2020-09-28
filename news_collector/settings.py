@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = NEWS_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -86,6 +86,16 @@ WSGI_APPLICATION = 'news_collector.wsgi.application'
 #     }
 # }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': "news_collector",
+        'USER': "news_owner",
+        'PASSWORD': "siehf#$tc2.VTH34",
+        'HOST': '',
+        'PORT': '',
+    }
+}
 
 DATABASES = {
     'default': "postgres://vapqwtuddvoocu:dc4fa7072cd240cba13b93e4e92ecff470e3bf075eab0b47b33232658417f0aa@ec2-107-22-7-9.compute-1.amazonaws.com:5432/dbu95qaiu69bq4"
@@ -149,13 +159,3 @@ django_heroku.settings(locals())
 import dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "news_collector",
-        'USER': "news_owner",
-        'PASSWORD': "siehf#$tc2.VTH34",
-        'HOST': '',
-        'PORT': '',
-    }
-}
