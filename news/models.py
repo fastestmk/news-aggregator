@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Headline(models.Model):
-	title = models.CharField(max_length=1000)
+	title = models.TextField()
 	image = models.ImageField(blank=True, null=True)
 	created_at  = models.DateField(auto_now_add=True)
 	url = models.TextField()
