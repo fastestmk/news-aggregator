@@ -35,9 +35,12 @@ def get_news():
 			# new_headline.url = link
 			# new_headline.image = image_src
 			# new_headline.save()
-			sql = "INSERT INTO news_headline(title, url, image, created_at) VALUES ('"+str(title)+"', '"+str(link)+"', '"+str(image)+"', now()) "
-			cursor.execute(sql)
-			conn.commit()	
+			try:
+				sql = "INSERT INTO news_headline(title, url, image, created_at) VALUES ('"+str(title)+"', '"+str(link)+"', '"+str(image)+"', now()) "
+				cursor.execute(sql)
+				conn.commit()	
+			except psycopg2.errors.InFailedSqlTransaction:
+				pass	
 
 if __name__ == '__main__':
 	sched.start()
