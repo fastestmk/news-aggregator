@@ -13,7 +13,7 @@ cursor = conn.cursor()
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('interval', minutes=5)
+@sched.scheduled_job('interval', minutes=1)
 def get_news():
 		url = "https://indianexpress.com/section/world/"
 		data = re.get(url)
@@ -24,7 +24,10 @@ def get_news():
 		for artical in News:
 			link = artical.find('a')['href']
 			# image_src = artical.find('img')['src'].split()[0]
-			image = artical.find('img')['data-lazy-src']
+			try:
+				image = artical.find('img')['data-lazy-src']
+			except Exception as e:
+				image = None
 			# print(image_s)
 			title = artical.find('h2').text
 			# new_headline = Headline()
@@ -38,6 +41,7 @@ def get_news():
 
 if __name__ == '__main__':
 	sched.start()
+	# get_news()
 
 
 
