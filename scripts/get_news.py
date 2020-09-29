@@ -40,7 +40,9 @@ def get_news():
 				cursor.execute(sql)
 				conn.commit()	
 			except psycopg2.errors.InFailedSqlTransaction:
-				pass	
+				pass
+			except psycopg2.errors.StringDataRightTruncation:
+				pass 		
 
 if __name__ == '__main__':
 	sched.start()
