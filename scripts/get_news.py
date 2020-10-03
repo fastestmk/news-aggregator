@@ -22,7 +22,7 @@ cursor = conn.cursor()
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('interval', minutes=1)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour=9)
 def get_news():
 		url = "https://indianexpress.com/section/india/"
 		data = re.get(url)
