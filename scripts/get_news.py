@@ -4,9 +4,18 @@ import requests as re
 from bs4 import BeautifulSoup
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-# DATABASE_URL = "$(heroku config:get postgresql-triangular-79977 -a news-collector-63298)"  
 DATABASE_URL = "postgres://vapqwtuddvoocu:dc4fa7072cd240cba13b93e4e92ecff470e3bf075eab0b47b33232658417f0aa@ec2-107-22-7-9.compute-1.amazonaws.com:5432/dbu95qaiu69bq4"
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+
+# conn = psycopg2.connect(
+# 					user = "news_owner",
+#                     password = "siehf#$tc2.VTH34",
+#                     database = "news_collector",
+#                     host = "127.0.0.1",
+#                     port = "5432",
+#         )
+
 cursor = conn.cursor()
 # print(cursor)
 
@@ -15,7 +24,7 @@ sched = BlockingScheduler()
 
 @sched.scheduled_job('interval', minutes=1)
 def get_news():
-		url = "https://indianexpress.com/section/world/"
+		url = "https://indianexpress.com/section/india/"
 		data = re.get(url)
 		soup = BeautifulSoup(data.text, 'html.parser')
 		# print(soup)
@@ -30,11 +39,7 @@ def get_news():
 				image = None
 			# print(image_s)
 			title = artical.find('h2').text
-			# new_headline = Headline()
-			# new_headline.title = title
-			# new_headline.url = link
-			# new_headline.image = image_src
-			# new_headline.save()
+			# print(title)
 			try:
 				sql = "INSERT INTO news_headline(title, url, image, created_at) VALUES ('"+str(title)+"', '"+str(link)+"', '"+str(image)+"', now()) "
 				cursor.execute(sql)
