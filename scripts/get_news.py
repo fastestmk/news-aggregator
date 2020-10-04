@@ -21,7 +21,7 @@ cursor = conn.cursor()
 # print(cursor)
 
 
-sched = BlockingScheduler()
+sched = BlockingScheduler(timezone="Asia/Kolkata")
 
 print("current datetime", datetime.now())
 
