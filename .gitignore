@@ -37,3 +37,5 @@ db.sqlite3-journal
 **/__pycache__/*
 staticfiles/
 # news_collector/env.py
+
+news/templates/news/test.html
