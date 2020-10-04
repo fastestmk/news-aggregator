@@ -3,6 +3,7 @@ import psycopg2
 import requests as re
 from bs4 import BeautifulSoup
 from apscheduler.schedulers.blocking import BlockingScheduler
+from datetime import datetime 
 
 DATABASE_URL = "postgres://vapqwtuddvoocu:dc4fa7072cd240cba13b93e4e92ecff470e3bf075eab0b47b33232658417f0aa@ec2-107-22-7-9.compute-1.amazonaws.com:5432/dbu95qaiu69bq4"
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -22,7 +23,9 @@ cursor = conn.cursor()
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=10, minute=15)
+print("current datetime", datetime.now())
+
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=10, minute=40)
 def get_news():
 		url = "https://indianexpress.com/section/india/"
 		data = re.get(url)
