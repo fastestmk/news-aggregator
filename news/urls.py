@@ -23,6 +23,6 @@ urlpatterns = [
     path('', NewsList.as_view(), name='home'),
 	path('signup', SignUpView.as_view(), name='signup'),
     path('signin', LoginView.as_view(), name='signin'),
-    path('logout', LogoutView, name='logout')
-
+    path('logout', LogoutView, name='logout'),
+    path('test', SampleView.as_view(), name='test')
 ]

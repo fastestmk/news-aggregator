@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!--   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -24,25 +24,23 @@
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
-<!--     <form class="form-inline my-2 my-lg-0">
+    <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
- -->
+
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img src="{% static 'assets/images/b6.jpg' %}" alt="..."  width='50' height='50' class="img-thumbnail">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<!--           <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
- -->          <div class="dropdown-divider"></div>
+           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
         </div>
       </li>
 
   </div>
-</nav>
+</nav> -->
 
     <div class="jumbotron">
         <center><h1>DataFlair News Aggregator</h1>
@@ -50,60 +48,67 @@
         </form>
     </center>
     </div>
-  <div class="card-columns infinite-container" style="padding: 10px; margin: 20px;">
+<div class="card-columns container" style="padding: 10px; margin: 20px;">
   {% for object in object_list %}
-    <div class="card" style="width: 18rem;border:5px black solid;">
+  <div class="card bg-light mb-3" style="width: 18rem;border:5px black solid;">
     <img class="card-img-top" src = "{{ object.image }}">
     <div class="card-body">
       <h5 class="card-title"><div class="card-body">
-        <a href="{{object.url}}"><h5 class="card-title">{{object.title}}</h5></a>
+        <a target="_blank" href="{{object.url}}"><h5 class="card-title infinite-item">{{object.title}}</h5></a>
       <p class="card-title">{{object.created_at}}</p>
       </div></h5>
     </div>
     <!-- <p>{{object.created_at}}</p> -->
   </div>
   {% endfor %}
-
-<!--   {% if object_list.has_next %}
-    <a class="infinite-more-link" href="?page={{ object_list.next_page_number }}">More</a>
-  {% endif %}
+</div>
 
   <div class="loading" style="display: none;">
     Loading...
   </div>
- -->
-</div>
-</div>
+
+
+  {% if object_list.has_next %}
+    <a class="infinite-more-link" href="?page={{ object_list.next_page_number }}">More</a>
+  {% endif %}
+
+
     <script
-src="http://code.jquery.com/jquery-3.3.1.min.js"
-integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+   ></script>
+<!--     <script src="{% static 'scripts/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'scripts/infinite.min.js' %}"></script>
+ -->
+   <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/infinity/0.2.2/infinity.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"  ></script>
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+
+    <script>
+    $('.container').infiniteScroll({
+      // options
+      path: '.pagination__next',
+      append: '.card',
+      history: false,
+    });
+    </script>
+
+    <!-- <script>
+    var infinite = new Waypoint.Infinite({
+      element: $('.infinite-container')[0],
+      onBeforePageLoad: function () {
+        $('.loading').show();
+      },
+      onAfterPageLoad: function ($items) {
+        $('.loading').hide();
+      }
+    });
+    </script> -->
 
 
-
-
-     <script>
-    // var infinite = new Waypoint.Infinite({
-    //   element: $('.infinite-container')[0],
-    //   onBeforePageLoad: function () {
-    //     $('.loading').show();
-    //   },
-    //   onAfterPageLoad: function ($items) {
-    //     $('.loading').hide();
-    //   }
-    // });
-
-    var waypoint = new Waypoint({
-  element: document.getElementByClassName('infinite-container'),
-  handler: function(direction) {
-    console.log('Scrolled to waypoint!')
-  }
-})
-  </script>
 
 </body>
 </html>

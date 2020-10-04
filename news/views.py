@@ -14,14 +14,14 @@ class NewsList(TemplateView):
 	def get(self, request):
 		if request.user.is_authenticated:			
 			headlines = Headline.objects.all()[::-1]
-			# page = request.GET.get('page', 1)
-			# paginator = Paginator(headlines, 9)
-			# try:
-			# 	news = paginator.page(page)
-			# except PageNotAnInteger:
-			# 	news = paginator.page(1)
-			# except EmptyPage:
-			# 	news = paginator.page(paginator.num_pages)		
+			page = request.GET.get('page', 1)
+			paginator = Paginator(headlines, 9)
+			try:
+				news = paginator.page(page)
+			except PageNotAnInteger:
+				news = paginator.page(1)
+			except EmptyPage:
+				news = paginator.page(paginator.num_pages)		
 			context = {'object_list': headlines}
 			return render(request, self.template, context)
 		
@@ -31,7 +31,7 @@ class NewsList(TemplateView):
 class ScrapeNews(View):
 	# template = "news/news.html"
 	def get(self, request):
-		url = "https://indianexpress.com/section/world/"
+		url = "https://indianexpress.com/section/india/"
 		data = re.get(url)
 		soup = BeautifulSoup(data.text, 'html.parser')
 		# print(soup)
@@ -108,3 +108,19 @@ class LoginView(TemplateView):
 def LogoutView(request):	
 	logout(request)
 	return redirect('signin')
+
+class SampleView(TemplateView):
+	template = "news/test.html"
+	def get(self, request):
+		headlines = Headline.objects.all()[::-1]
+		page = request.GET.get('page', 1)
+		paginator = Paginator(headlines, 9)
+		try:
+			news = paginator.page(page)
+		except PageNotAnInteger:
+			news = paginator.page(1)
+		except EmptyPage:
+			news = paginator.page(paginator.num_pages)		
+		context = {'object_list': headlines}
+		return render(request, self.template, context)
+		
