@@ -25,7 +25,7 @@ sched = BlockingScheduler()
 
 print("current datetime", datetime.now())
 
-@sched.scheduled_job('cron', hour=11, minute=10)
+@sched.scheduled_job('cron', hour=11, minute=17)
 def get_news():
 		url = "https://indianexpress.com/section/india/"
 		data = re.get(url)
