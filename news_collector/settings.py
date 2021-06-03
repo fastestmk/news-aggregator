@@ -102,7 +102,7 @@ WSGI_APPLICATION = 'news_collector.wsgi.application'
 # }
 
 DATABASES = {
-    'default': "postgres://vapqwtuddvoocu:dc4fa7072cd240cba13b93e4e92ecff470e3bf075eab0b47b33232658417f0aa@ec2-107-22-7-9.compute-1.amazonaws.com:5432/dbu95qaiu69bq4"
+    'default': str(os.getenv('default'))
 }
 
 
