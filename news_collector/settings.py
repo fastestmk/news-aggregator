@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # secret_key = os.environ.get("NEWS_SECRET_KEY")
 # print('-------------', secret_key)
-SECRET_KEY = NEWS_SECRET_KEY
+SECRET_KEY = "@8gbn9$tqj+2p3vhs+0)(2%^&(vjxeef-wssk-vnpu+lsfmk57"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
