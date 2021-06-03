@@ -27,7 +27,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # secret_key = os.environ.get("NEWS_SECRET_KEY")
 # print('-------------', secret_key)
 
-# SECRET_KEY = "@8gbn9$tqj+2p3vhs+0)(2%^&(vjxeef-wssk-vnpu+lsfmk57"
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 
