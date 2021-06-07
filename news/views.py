@@ -12,20 +12,20 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 class NewsList(TemplateView):
 	template = "news/home.html"
 	def get(self, request):
-		if request.user.is_authenticated:			
-			headlines = Headline.objects.all()[::-1]
-			page = request.GET.get('page', 1)
-			paginator = Paginator(headlines, 9)
-			try:
-				news = paginator.page(page)
-			except PageNotAnInteger:
-				news = paginator.page(1)
-			except EmptyPage:
-				news = paginator.page(paginator.num_pages)		
-			context = {'object_list': headlines}
-			return render(request, self.template, context)
+		# if request.user.is_authenticated:			
+		headlines = Headline.objects.all()[::-1]
+		page = request.GET.get('page', 1)
+		paginator = Paginator(headlines, 9)
+		try:
+			news = paginator.page(page)
+		except PageNotAnInteger:
+			news = paginator.page(1)
+		except EmptyPage:
+			news = paginator.page(paginator.num_pages)		
+		context = {'object_list': headlines}
+		return render(request, self.template, context)
 		
-		return redirect('signin')	
+		# return redirect('signin')	
 
 
 class ScrapeNews(View):
